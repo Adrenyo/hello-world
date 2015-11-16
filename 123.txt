@@ -1,3 +1,6 @@
+
+1231313135131351
+
 #include "io430.h"
 int main( void ) 
 {
@@ -6,16 +9,16 @@ int main( void )
   int birler,onlar; 
   long time;
   WDTCTL = WDTPW + WDTHOLD; 
-  ADC10CTL1 = INCH_10 + ADC10DIV_3; //��ܷū׷P�� + �ɶ����W/4?
+  ADC10CTL1 = INCH_10 + ADC10DIV_3; //選擇溫度感測 + 時間分頻/4?
   ADC10CTL0 = SREF_1 + ADC10SHT_3 + REFON + ADC10ON;
-  //�鷺���Ѧҹq��1.5V + 64 �� ADC10CLKs
+  //選內部參考電壓1.5V + 64 × ADC10CLKs
   P1DIR = 0xff;
   P2DIR |=BIT4+BIT5;
   while(1) 
   {
         ADC10CTL0 |= ENC + ADC10SC; 
         while((ADC10BUSY & ADC10CTL1));
-        onlar = time / 10;	//���Q��
+        onlar = time / 10;	//取十位
 
         for(int i=0;i<500;i++) 
         {
